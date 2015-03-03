@@ -1,7 +1,9 @@
 ---
 title: "Reproducible Research - Peer Assessment 1"
+output:
+  html_document:
+    fig_caption: yes
 date: "Monday, March 02, 2015"
-output: html_document
 ---
 
 ###Load the data :
@@ -23,6 +25,8 @@ steps_per_day<- aggregate(steps ~ date, data, FUN=sum)
 
 hist(steps_per_day$steps,breaks=20,main="Hist of total daily steps",xlab="Total daily steps")
 ```
+![totalDailySteps](figure/totalDailySteps.png)
+
 
 ####2.Calculate and report the mean and median total number of steps taken per day
 The median is :
@@ -41,6 +45,7 @@ mean_steps_per_interval<- aggregate(steps ~ interval, data, FUN=mean)
 
 plot(mean_steps_per_interval, type="l",main="Mean number of steps per 5 min interval",ylab="Average number of steps taken",xlab="Number of 5 min intervals")
 ```
+![MeanNumberOfStepsPer5MinInterval](figure/MeanNumberOfStepsPer5MinInterval.png)
 
 #### 2.Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -86,8 +91,8 @@ imp_steps_per_day<- aggregate(imputed_mean ~ date, fulldata, FUN=sum)
 hist(imp_steps_per_day$imputed_mean,breaks=20,main="Hist of total daily steps, NA values imputed by mean ",xlab="Total daily steps")
 median(imp_steps_per_day$imputed_mean)
 mean(imp_steps_per_day$imputed_mean)
-
 ```
+![TotalDailyStepsNAImputedByMean](figure/TotalDailyStepsNAImputedByMean.png)
 
 Difference between original and imputed :
 ```{r}
@@ -103,6 +108,7 @@ hist(imp_steps_per_day$imputed_median,breaks=20,main="Hist of total daily steps,
 median(imp_steps_per_day$imputed_median)
 mean(imp_steps_per_day$imputed_median)
 ```
+![TotalDailyStepsNAImputedByMedian](figure/TotalDailyStepsNAImputedByMedian.png)
 
 Difference between original and imputed :
 ```{r}
@@ -137,3 +143,4 @@ library(lattice)
 
 xyplot(data_by_day_type$steps ~ data_by_day_type$interval | data_by_day_type$day_type,type = "l", layout = c(1, 2), main="Median number of steps during weekend and weekdays", xlab = "Interval", ylab = "Number of steps")
 ```
+![MedianNumberOfStepsDuringWeekendAndWeekdays](figure/MedianNumberOfStepsDuringWeekendAndWeekdays.png)
