@@ -172,9 +172,9 @@ hist(imp_steps_per_day$imputed_median,breaks=20,main=&quot;Hist of total daily s
 </div>
 </div>
 <div id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends" class="section level2">
-<h2>Are there differences in activity patterns between weekdays and weekends?</h2>
+<h3>Are there differences in activity patterns between weekdays and weekends?</h2>
 <div id="create-a-new-factor-variable-in-the-dataset-with-two-levels-weekday-and-weekend-indicating-whether-a-given-date-is-a-weekday-or-weekend-day" class="section level3">
-<h3>1. Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day</h3>
+<h4>1. Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day</h3>
 <pre class="r"><code>get_day_type &lt;- function(date) {
   type &lt;- &quot;weekday&quot;
   if (weekdays(as.Date(date)) %in% c(&quot;Saturday&quot;, &quot;Sunday&quot;))  
@@ -187,7 +187,7 @@ fulldata$day_type &lt;- as.factor(sapply(fulldata$date, get_day_type))
 data_by_day_type&lt;- aggregate(steps ~ day_type  + interval , fulldata, FUN=mean)</code></pre>
 </div>
 <div id="make-a-panel-plot-containing-a-time-series-plot-i.e.type-l-of-the-5-minute-interval-x-axis-and-the-average-number-of-steps-taken-averaged-across-all-weekday-days-or-weekend-days-y-axis" class="section level3">
-<h3>2. Make a panel plot containing a time series plot (i.e. type = “l”) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis)</h3>
+<h4>2. Make a panel plot containing a time series plot (i.e. type = “l”) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis)</h3>
 <pre class="r"><code>library(lattice)
 
 xyplot(data_by_day_type$steps ~ data_by_day_type$interval | data_by_day_type$day_type,type = &quot;l&quot;, layout = c(1, 2), main=&quot;Median number of steps during weekend and weekdays&quot;, xlab = &quot;Interval&quot;, ylab = &quot;Number of steps&quot;)</code></pre>

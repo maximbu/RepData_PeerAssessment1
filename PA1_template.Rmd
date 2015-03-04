@@ -118,9 +118,9 @@ mean(steps_per_day$steps, na.rm=TRUE) - mean(imp_steps_per_day$imputed_median)
 
 So we can see that imputing NA values by mean (in our case) keeps the data close to original results , while imputing by median causes major differences.
 
-## Are there differences in activity patterns between weekdays and weekends?
+### Are there differences in activity patterns between weekdays and weekends?
 
-### 1. Create a new factor variable in the dataset with two levels -- "weekday" and "weekend" indicating whether a given date is a weekday or weekend day
+#### 1. Create a new factor variable in the dataset with two levels -- "weekday" and "weekend" indicating whether a given date is a weekday or weekend day
 ```{r}
 get_day_type <- function(date) {
   type <- "weekday"
@@ -136,7 +136,7 @@ data_by_day_type<- aggregate(steps ~ day_type  + interval , fulldata, FUN=mean)
 ```
 
 
-### 2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis)
+#### 2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis)
 
 ```{r}
 library(lattice)
